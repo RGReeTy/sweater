@@ -1,12 +1,10 @@
-<html>
+<#import "parts/common.ftl" as c>
+<#import "parts/login.ftl" as l>
 
-<body>
+<@c.page>
 
     <div>
-        <form action="/logout" method="post">
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <@l.logout></@l.logout>
     </div>
 
     <div>
@@ -32,5 +30,4 @@
         <strong>{{authorName}}</strong>
     </div>
     {{/messages}}
-</body>
-</html>
+</@c.page>

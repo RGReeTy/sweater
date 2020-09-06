@@ -1,11 +1,14 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/login.ftl" as l>
 
 <@c.page>
-
-    <div>
-        <@l.logout />
-        <span><a href="/user">User list</a></span>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form method="get" action="/main" class="form-inline">
+                <input class="form-control" type="text" name="filter"
+                       value="${filter?ifExists}" placeholder="Search by tag">
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </form>
+        </div>
     </div>
 
     <div>
@@ -18,12 +21,6 @@
         </form>
     </div>
 
-    <div>Список сообщений</div>
-
-    <form method="get" action="/main">
-        <input type="text" name="filter" value="${filter?ifExists}">
-        <button type="submit">Найти</button>
-    </form>
 
     <#list messages as message>
         <div>

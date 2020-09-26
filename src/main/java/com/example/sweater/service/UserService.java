@@ -58,12 +58,13 @@ public class UserService implements UserDetailsService {
 
     private void sendMessage(User user) {
         if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format("Hello, %s! \n" +
-                            "Welcome to Sweater. Please visit next link: " +
-                            "http://localhost:8081/activate/$s",
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Welcome to Twitter. Please, visit next: " +
+                            "<a href='http://localhost:8081/activate/%s'>link</a>",
                     user.getUsername(),
-                    user.getActivationCode());
-
+                    user.getActivationCode()
+            );
             mailSender.send(user.getEmail(), "Activation code", message);
         }
     }

@@ -14,6 +14,9 @@ import org.springframework.util.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The type User service.
+ */
 @Service
 public class UserService implements UserDetailsService {
 
@@ -37,6 +40,12 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    /**
+     * Add user boolean.
+     *
+     * @param user the user
+     * @return the boolean
+     */
     public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
@@ -69,6 +78,12 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    /**
+     * Activate user boolean.
+     *
+     * @param code the code
+     * @return the boolean
+     */
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
 
@@ -82,10 +97,22 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<User> findAll() {
         return userRepo.findAll();
     }
 
+    /**
+     * Save user.
+     *
+     * @param user     the user
+     * @param username the username
+     * @param form     the form
+     */
     public void saveUser(User user, String username, Map<String, String> form) {
         user.setUsername(username);
         Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
@@ -100,6 +127,13 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
+    /**
+     * Update profile.
+     *
+     * @param user     the user
+     * @param password the password
+     * @param email    the email
+     */
     public void updateProfile(User user, String password, String email) {
         String userEmail = user.getEmail();
 
@@ -125,12 +159,24 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    /**
+     * Subscribe.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     */
     public void subscribe(User currentUser, User user) {
         user.getSubscribers().add(currentUser);
 
         userRepo.save(user);
     }
 
+    /**
+     * Unsubscribe.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     */
     public void unsubscribe(User currentUser, User user) {
         user.getSubscribers().remove(currentUser);
 

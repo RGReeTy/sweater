@@ -23,6 +23,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * The type Main controller.
+ */
 @Controller
 public class MainController {
 
@@ -32,11 +35,24 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
+    /**
+     * Greeting string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
+    /**
+     * Main string.
+     *
+     * @param filter the filter
+     * @param model  the model
+     * @return the string
+     */
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages = messageRepo.findAll();
@@ -53,6 +69,17 @@ public class MainController {
         return "main";
     }
 
+    /**
+     * Add string.
+     *
+     * @param user          the user
+     * @param message       the message
+     * @param bindingResult the binding result
+     * @param model         the model
+     * @param file          the file
+     * @return the string
+     * @throws IOException the io exception
+     */
     @PostMapping("/main")
     public String add(
             @AuthenticationPrincipal User user,
@@ -97,6 +124,15 @@ public class MainController {
         }
     }
 
+    /**
+     * User messages string.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     * @param model       the model
+     * @param message     the message
+     * @return the string
+     */
     @GetMapping("/user-messages/{user}")
     public String userMessages(
             @AuthenticationPrincipal User currentUser,
@@ -117,6 +153,18 @@ public class MainController {
         return "userMessages";
     }
 
+    /**
+     * Update messages string.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     * @param message     the message
+     * @param text        the text
+     * @param tag         the tag
+     * @param file        the file
+     * @return the string
+     * @throws IOException the io exception
+     */
     @PostMapping("/user-messages/{user}")
     public String updateMessages(
             @AuthenticationPrincipal User currentUser,

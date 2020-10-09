@@ -8,6 +8,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+/**
+ * The type Mail config.
+ */
 @Configuration
 public class MailConfig {
     @Value("${spring.mail.host}")
@@ -36,6 +39,11 @@ public class MailConfig {
     private String enable;
 
 
+    /**
+     * Gets mail sender.
+     *
+     * @return the mail sender
+     */
     @Bean
     public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

@@ -8,12 +8,20 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * The type Mvc config.
+ */
 @Configuration
 public class MVCConfig implements WebMvcConfigurer {
 
     @Value("${upload.path}")
     private String uploadPath;
 
+    /**
+     * Gets rest template.
+     *
+     * @return the rest template
+     */
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();

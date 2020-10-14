@@ -19,6 +19,9 @@ import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * The type Registration controller.
+ */
 @Controller
 public class RegistrationController {
     private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
@@ -32,11 +35,26 @@ public class RegistrationController {
     @Value("${recaptcha.secret}")
     private String secret;
 
+    /**
+     * Registration string.
+     *
+     * @return the string
+     */
     @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
 
+    /**
+     * Add user string.
+     *
+     * @param passwordConfirm the password confirm
+     * @param captchaResponse the captcha response
+     * @param user            the user
+     * @param bindingResult   the binding result
+     * @param model           the model
+     * @return the string
+     */
     @PostMapping("/registration")
     public String addUser(
             @RequestParam("password2") String passwordConfirm,
@@ -76,6 +94,13 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
+    /**
+     * Activate string.
+     *
+     * @param model the model
+     * @param code  the code
+     * @return the string
+     */
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
         boolean isActivated = userService.activateUser(code);

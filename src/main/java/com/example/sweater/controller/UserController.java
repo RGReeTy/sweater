@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * The type User controller.
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -19,6 +22,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * User list string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
@@ -26,6 +35,13 @@ public class UserController {
         return "userList";
     }
 
+    /**
+     * User edit form string.
+     *
+     * @param user  the user
+     * @param model the model
+     * @return the string
+     */
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
@@ -34,6 +50,14 @@ public class UserController {
         return "userEdit";
     }
 
+    /**
+     * User save string.
+     *
+     * @param username the username
+     * @param form     the form
+     * @param user     the user
+     * @return the string
+     */
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(
@@ -46,6 +70,13 @@ public class UserController {
         return "redirect:/user";
     }
 
+    /**
+     * Gets profile.
+     *
+     * @param model the model
+     * @param user  the user
+     * @return the profile
+     */
     @GetMapping("profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
@@ -54,6 +85,14 @@ public class UserController {
         return "profile";
     }
 
+    /**
+     * Update profile string.
+     *
+     * @param user     the user
+     * @param password the password
+     * @param email    the email
+     * @return the string
+     */
     @PostMapping("profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
@@ -65,6 +104,13 @@ public class UserController {
         return "redirect:/user/profile";
     }
 
+    /**
+     * Subscribe string.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     * @return the string
+     */
     @GetMapping("subscribe/{user}")
     public String subscribe(
             @AuthenticationPrincipal User currentUser,
@@ -74,6 +120,13 @@ public class UserController {
         return "redirect:/user-messages/" + user.getId();
     }
 
+    /**
+     * Unsubscribe string.
+     *
+     * @param currentUser the current user
+     * @param user        the user
+     * @return the string
+     */
     @GetMapping("unsubscribe/{user}")
     public String unsubscribe(
             @AuthenticationPrincipal User currentUser,
@@ -83,6 +136,14 @@ public class UserController {
         return "redirect:/user-messages/" + user.getId();
     }
 
+    /**
+     * User list string.
+     *
+     * @param model the model
+     * @param user  the user
+     * @param type  the type
+     * @return the string
+     */
     @GetMapping("{type}/{user}/list")
     public String userList(
             Model model,

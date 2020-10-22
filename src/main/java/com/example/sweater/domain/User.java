@@ -12,6 +12,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The type User.
+ */
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails, Serializable {
@@ -57,10 +60,20 @@ public class User implements UserDetails, Serializable {
     )
     private Set<User> subscribtions = new HashSet<>();
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(long id) {
         this.id = id;
     }
@@ -89,6 +102,11 @@ public class User implements UserDetails, Serializable {
         return isActive();
     }
 
+    /**
+     * Sets username.
+     *
+     * @param username the username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
@@ -102,66 +120,146 @@ public class User implements UserDetails, Serializable {
         return password;
     }
 
+    /**
+     * Sets password.
+     *
+     * @param password the password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Is active boolean.
+     *
+     * @return the boolean
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * Sets active.
+     *
+     * @param active the active
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     * Gets roles.
+     *
+     * @return the roles
+     */
     public Set<Role> getRoles() {
         return roles;
     }
 
+    /**
+     * Sets roles.
+     *
+     * @param roles the roles
+     */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
+    /**
+     * Is admin boolean.
+     *
+     * @return the boolean
+     */
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Gets activation code.
+     *
+     * @return the activation code
+     */
     public String getActivationCode() {
         return activationCode;
     }
 
+    /**
+     * Sets activation code.
+     *
+     * @param activationCode the activation code
+     */
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
 
+    /**
+     * Gets messages.
+     *
+     * @return the messages
+     */
     public Set<Message> getMessages() {
         return messages;
     }
 
+    /**
+     * Sets messages.
+     *
+     * @param messages the messages
+     */
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
     }
 
+    /**
+     * Gets subscribers.
+     *
+     * @return the subscribers
+     */
     public Set<User> getSubscribers() {
         return subscribers;
     }
 
+    /**
+     * Sets subscribers.
+     *
+     * @param subscribers the subscribers
+     */
     public void setSubscribers(Set<User> subscribers) {
         this.subscribers = subscribers;
     }
 
+    /**
+     * Gets subscribtions.
+     *
+     * @return the subscribtions
+     */
     public Set<User> getSubscribtions() {
         return subscribtions;
     }
 
+    /**
+     * Sets subscribtions.
+     *
+     * @param subscribtions the subscribtions
+     */
     public void setSubscribtions(Set<User> subscribtions) {
         this.subscribtions = subscribtions;
     }
